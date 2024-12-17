@@ -15,13 +15,13 @@ const authMiddleware = (req,res,next) => {
             next();
         }else {
             return res.status(403).json({
-                msg :"something is wrong"
+                msg : "Invalid token: user ID not found"
             })
         }
             
     }catch(err){
         return res.status(403).json({
-            msg :"something is wrong"
+            msg :"Invalid token"
         })
     }  
 }
