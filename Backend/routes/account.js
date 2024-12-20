@@ -1,8 +1,7 @@
 const express = require('express');
-const { authMiddleware } = require('../middleware');
-const { Account } = require('../db');
+const { authMiddleware } = require("../middleware/authMiddleware");
+const { Account } = require('../db/db');
 const { default: mongoose } = require('mongoose');
-
 
 const router = express.Router();
 
@@ -17,6 +16,7 @@ router.get("/balance", authMiddleware, async (req, res) => {
 });
 
 router.post("/transfer", authMiddleware, async (req, res) => {
+    try{
     const session = await mongoose.startSession();
 
     session.startTransaction();
@@ -50,6 +50,9 @@ router.post("/transfer", authMiddleware, async (req, res) => {
     res.json({
         message: "Transfer successful"
     });
+}catch(err){
+    res.status(500).json({ msg: "mongo account Server error", error: err.message });
+}
 });
 
 module.exports = router;
