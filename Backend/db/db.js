@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 mongoose.connect(
-  "mongodb+srv://pradeep20020102:<db_password>@cluster00.ghjolwt.mongodb.net/PayTM"
+ "mongodb+srv://pradeep20020102:Pr01022002Pr@cluster00.ghjolwt.mongodb.net/PayTM"
 );
 
 const userSchema = new mongoose.Schema({
