@@ -5,6 +5,7 @@ const { User, Account } = require("../db/db");
 const { JWT_SECRET } = require("../config");
 const { authMiddleware } = require("../middleware/authMiddleware");
 const { hashPassword } = require("../utilis/hassPassword");
+const jwt = require("jsonwebtoken");
 
 const signupBody = z.object({
   username: z.string().email(),
