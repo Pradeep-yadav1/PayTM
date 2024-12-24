@@ -5,12 +5,14 @@ import { Button } from "../components/Button";
 import { BottomWarning } from "../components/BottomWarning";
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export const Signup = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
   return (
     <div className="bg-slate-400 h-screen flex justify-center">
       <div className="flex flex-col justify-center">
@@ -47,7 +49,7 @@ export const Signup = () => {
           />
           <div className="pt-4">
             <Button
-              onclick={async () => {
+              onClick={async () => {
                 const Response = await axios.post(
                   "http://localhost:3000/api/v1/user/signup",
                   {
@@ -58,6 +60,9 @@ export const Signup = () => {
                   }
                 );
                 localStorage.setItem("token",Response.data.token);
+                if(Response.status === 200){
+                  navigate("/dashboard")
+                }
               }}
               label={"Sign up"}
             />
